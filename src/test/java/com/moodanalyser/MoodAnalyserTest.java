@@ -44,11 +44,33 @@ public class MoodAnalyserTest {
     // passing null
 
     @Test
+    public void given_Null_ShouldReturnMessage() {
+        MoodAnalyser moodanalyser = new MoodAnalyser();
+        try {
+            String mood = moodanalyser.analyseMood();
+            Assert.assertEquals("Invalid Mood", mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenConstructor_Null_ShouldReturnMessage() {
+        MoodAnalyser moodanalyser = new MoodAnalyser(null);
+        try {
+            String mood = moodanalyser.analyseMood();
+            Assert.assertEquals("Invalid Mood", mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void givenMessageInMethod_Null_ShouldReturnMessage() {
         MoodAnalyser moodanalyser = new MoodAnalyser();
         try {
-            String mood = moodanalyser.analyseMood(null);
-            Assert.assertEquals("Entered Invalid Mood", mood);
+            String mood = moodanalyser.analyseMood("");
+            Assert.assertEquals("Empty Mood", mood);
         } catch (MoodAnalysisException e) {
             e.printStackTrace();
         }
@@ -56,10 +78,10 @@ public class MoodAnalyserTest {
 
     @Test
     public void givenMessage_Null_ShouldReturnMessage() {
-        MoodAnalyser moodanalyser = new MoodAnalyser(null);
+        MoodAnalyser moodanalyser = new MoodAnalyser();
         try {
-            String mood = moodanalyser.analyseMood();
-            Assert.assertEquals("Entered Invalid Mood", mood);
+            String mood = moodanalyser.analyseMood(null);
+            Assert.assertEquals("Invalid Mood", mood);
         } catch (MoodAnalysisException e) {
             e.printStackTrace();
         }

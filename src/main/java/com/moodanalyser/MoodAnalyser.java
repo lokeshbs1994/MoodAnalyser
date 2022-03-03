@@ -3,28 +3,33 @@ package com.moodanalyser;
 public class MoodAnalyser {
     private String message;
 
-    //constructor return the message- parameterised constructor
     public MoodAnalyser(String message) {
         this.message = message;
     }
 
-    public MoodAnalyser() {
+    public MoodAnalyser(){
     }
 
-    public String analyseMood(String message) throws  MoodAnalysisException{
+    public String  analyseMood(String message) throws MoodAnalysisException{
         this.message = message;
         return analyseMood();
     }
 
     // Analysing mood using method analyse mood with parameter passed
-    public String analyseMood() throws MoodAnalysisException{
+    public String analyseMood() throws MoodAnalysisException {
         try {
-            if (message.toLowerCase().contains("sad"))
+            if (message.length() == 0) {
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.EMPTY, "Empty mood");
+            }
+            if (message.toLowerCase().contains("sad")) {
+                System.out.println("SAD");
                 return "SAD";
-            else
+            } else {
+                System.out.println("HAPPY");
                 return "HAPPY";
-        } catch (NullPointerException e) {
-            throw new MoodAnalysisException ("Entered Invalid Mood");
+            }
+        } catch (NullPointerException exception) {
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.NULL, "Invalid mood");
         }
     }
 }
