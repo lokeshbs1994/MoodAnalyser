@@ -1,9 +1,9 @@
 package com.moodanalyser;
 
 public class MoodAnalyser {
-    private static String message;
+    private String message;
 
-    //constructor return the message- parameterised conctructor
+    //constructor return the message- parameterised constructor
     public MoodAnalyser(String message) {
         this.message = message;
     }
@@ -11,20 +11,20 @@ public class MoodAnalyser {
     public MoodAnalyser() {
     }
 
-    public String analyseMood(String message) {
+    public String analyseMood(String message) throws  MoodAnalysisException{
         this.message = message;
         return analyseMood();
     }
 
     // Analysing mood using method analyse mood with parameter passed
-    public String analyseMood() {
+    public String analyseMood() throws MoodAnalysisException{
         try {
             if (message.toLowerCase().contains("sad"))
                 return "SAD";
             else
                 return "HAPPY";
         } catch (NullPointerException e) {
-            return "HAPPY";
+            throw new MoodAnalysisException ("Entered Invalid Mood");
         }
     }
 }
